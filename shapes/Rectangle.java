@@ -7,28 +7,20 @@ public final class Rectangle implements Shape {
     private double height;
 
     public Rectangle(double width, double height) {
+        if (width < 0)
+            throw new IllegalStateException("Invalid rectangle width: " + width);
+        if (height < 0)
+            throw new IllegalStateException("Invalid rectangle height: " + height);
         this.width = width;
         this.height = height;
     }
 
     public double getArea() {
-        if (!isCorrect()) {
-            throw new IllegalStateException("Invalid rectangle: width=" + width + ", height=" + height);
-        } else {
-            return width * height;
-        }
+        return width * height;
     }
 
     public double getPerimeter() {
-        if (!isCorrect()) {
-            throw new IllegalStateException("Invalid rectangle: width=" + width + ", height=" + height);
-        } else {
-            return 2 * (width + height);
-        }
-    }
-
-    private boolean isCorrect() {
-        return width > 0 && height > 0;
+        return 2 * (width + height);
     }
 
     public boolean equals(Object other) {
@@ -49,6 +41,8 @@ public final class Rectangle implements Shape {
     }
 
     public final void setWidth(double width) {
+        if (width < 0)
+            throw new IllegalStateException("Invalid rectangle width: " + width);
         this.width = width;
     }
 
@@ -57,6 +51,8 @@ public final class Rectangle implements Shape {
     }
 
     public final void setHeight(double height) {
+        if (height < 0)
+            throw new IllegalStateException("Invalid rectangle height: " + height);
         this.height = height;
     }
 }

@@ -5,28 +5,18 @@ public final class Circle implements Shape {
     private double radius;
 
     public Circle(double radius) {
+        if (radius < 0)
+            throw new IllegalStateException("Invalid circle radius: " + radius);
         this.radius = radius;
     }
 
     @Override
     public double getArea() {
-        if (!isCorrect()) {
-            throw new IllegalStateException("Invalid circle radius: " + radius);
-        } else {
-            return Math.PI * radius * radius;
-        }
+        return Math.PI * radius * radius;
     }
     @Override
     public double getPerimeter() {
-        if (!isCorrect()) {
-            throw new IllegalStateException("Invalid circle radius: " + radius);
-        } else {
-            return 2 * Math.PI * radius;
-        }
-    }
-
-    private boolean isCorrect() {
-        return radius > 0;
+        return 2 * Math.PI * radius;
     }
 
     public boolean equals(Object other) {
@@ -47,6 +37,8 @@ public final class Circle implements Shape {
     }
 
     public final void setRadius(double radius) {
+        if (radius < 0)
+            throw new IllegalStateException("Invalid circle radius: " + radius);
         this.radius = radius;
     }
 }

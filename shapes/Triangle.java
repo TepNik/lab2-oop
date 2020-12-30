@@ -8,31 +8,25 @@ public final class Triangle implements Shape {
     private double c;
 
     public Triangle(double a, double b, double c) {
+        if (isIncorrect(a, b, c))
+            throw new IllegalStateException("Invalid triangle: a=" + a + ", b=" + b + ", c=" + c);
         this.a = a;
         this.b = b;
         this.c = c;
     }
 
     public double getArea() {
-        if (!isCorrect()) {
-            throw new IllegalStateException("Invalid triangle: a=" + a + ", b=" + b + ", c=" + c);
-        } else {
-            return Math.sqrt(getPerimeter() / 2
-                    * (getPerimeter() / 2 - a)
-                    * (getPerimeter() / 2 - b)
-                    * (getPerimeter() / 2 - c));
-        }
+        return Math.sqrt(getPerimeter() / 2
+                * (getPerimeter() / 2 - a)
+                * (getPerimeter() / 2 - b)
+                * (getPerimeter() / 2 - c));
     }
 
     public double getPerimeter() {
-        if (!isCorrect()) {
-            throw new IllegalStateException("Invalid triangle: a=" + a + ", b=" + b + ", c=" + c);
-        } else {
-            return a + b + c;
-        }
+        return a + b + c;
     }
 
-    private boolean isCorrect() {
+    private boolean isIncorrect(double a, double b, double c) {
         return a > 0 && b > 0 && c > 0
                 && a + b > c
                 && b + c > a
@@ -60,6 +54,8 @@ public final class Triangle implements Shape {
     }
 
     public final void setA(double a) {
+        if (isIncorrect(a, b, c))
+            throw new IllegalStateException("Invalid triangle: a=" + a + ", b=" + b + ", c=" + c);
         this.a = a;
     }
 
@@ -68,6 +64,8 @@ public final class Triangle implements Shape {
     }
 
     public final void setB(double b) {
+        if (isIncorrect(a, b, c))
+            throw new IllegalStateException("Invalid triangle: a=" + a + ", b=" + b + ", c=" + c);
         this.b = b;
     }
 
@@ -76,6 +74,8 @@ public final class Triangle implements Shape {
     }
 
     public final void setC(double c) {
+        if (isIncorrect(a, b, c))
+            throw new IllegalStateException("Invalid triangle: a=" + a + ", b=" + b + ", c=" + c);
         this.c = c;
     }
 }

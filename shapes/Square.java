@@ -5,27 +5,17 @@ public final class Square implements Shape {
     private double height;
 
     public Square(double height) {
+        if (height < 0)
+            throw new IllegalStateException("Invalid square height: " + height);
         this.height = height;
     }
 
     public double getArea() {
-        if (!isCorrect()) {
-            throw new IllegalStateException("Invalid square height=" + height);
-        } else {
-            return height * height;
-        }
+        return height * height;
     }
 
     public double getPerimeter() {
-        if (!isCorrect()) {
-            throw new IllegalStateException("Invalid square height=" + height);
-        } else {
-            return 4 * height;
-        }
-    }
-
-    private boolean isCorrect() {
-        return this.height > (double)0;
+        return 4 * height;
     }
 
     public boolean equals(Object other) {
@@ -46,6 +36,8 @@ public final class Square implements Shape {
     }
 
     public final void setHeight(double height) {
+        if (height < 0)
+            throw new IllegalStateException("Invalid square height: " + height);
         this.height = height;
     }
 }
